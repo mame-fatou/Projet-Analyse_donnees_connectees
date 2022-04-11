@@ -1,6 +1,6 @@
 # Projet-Web
-Télécharger les donnée
-telecharger des données API
-Parser un contenu d'une page web
-Trouver le lien entre les trois source de données 
+##   Télecharger  des données 
+##  Réccupération de s données aveec une requettes  API
+## Parser  un contenu d'une page web 
 
+## Trouver un lien pour croiser les données 
