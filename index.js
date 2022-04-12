@@ -6,7 +6,7 @@ const fs =require('fs')
 const results =[];
 // Telechargement de données de la Consommation mensuelle brute de gaz des grandes Métropoles françaises
 
-fs.createReadStream('/Users/madioubah/Documents/GitHub/Projet-Web/Data/conso-gaz-metropole.csv')
+fs.createReadStream('./Data/conso-gaz-metropole.csv')
   .pipe(csv({}))
   .on('data',(data) =>results.push(data))
   .on('end',() =>{
