@@ -1,17 +1,30 @@
 const express = require('express') // importer le module
 const app = express()
+const gazs = require('./Data/conso-gaz-metropole.json')
 
-const csv =require('csv-parser')
-const fs =require('fs')
-const results =[];
-// Telechargement de données de la Consommation mensuelle brute de gaz des grandes Métropoles françaises
 
-fs.createReadStream('./Data/conso-gaz-metropole.csv')
-  .pipe(csv({}))
-  .on('data',(data) =>results.push(data))
-  .on('end',() =>{
-  })
 
+app.get('/gaz', (req,res) => {
+    res.status(200).json(gazs)
+})
+
+
+app.get('/gaz/fields/:nom_officiel_epci', (req,res) => {
+    const code = req.params.nom_officiel_epci
+    let sum =0;
+    let n=0;
+    const a = []
+    for (var i = 0; i < gazs.length; i++) {
+        if (gazs[i].fields.nom_officiel_epci === code ) {
+            a.push(gazs[i].fields.consommation);
+            sum = sum + gazs[i].fields.consommation;
+            n =n+1;    
+  }
+                
+}
+    const moyenne = sum/n;
+    res.status(200).json(" la moyenne de la consommation de gaz de " +code+ " est de " +moyenne)
+})
 
 // Accés a l'API openweathermap
 
@@ -37,3 +50,6 @@ app.get('/',(req,res)=>{
 app.listen(3000,()=>{
     console.log('serveur depuis en marche ')
 })
+
+    //const date = parseInt(req.params.fields.date)
+   // const parking = parkings.find(parking => parking.date === date)
