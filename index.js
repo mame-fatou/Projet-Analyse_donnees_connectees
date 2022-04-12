@@ -1,6 +1,10 @@
 const express = require('express') // importer le module
 const app = express()
+const PORT = process.env.PORT || 3000
 const gazs = require('./Data/conso-gaz-metropole.json')
+
+
+
 
 
 
@@ -47,7 +51,7 @@ app.get('/',(req,res)=>{
 
 // serveur
 
-app.listen(3000,()=>{
+app.listen(PORT,()=>{
     console.log('serveur depuis en marche ')
 })
 
