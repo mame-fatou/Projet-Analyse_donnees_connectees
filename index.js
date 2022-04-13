@@ -7,22 +7,21 @@ const gazs = require('./Data/conso-gaz-metropole.json')
 
 
 
-
 app.get('/gaz', (req,res) => {
     res.status(200).json(gazs)
 })
 
 // Root Pour calculer la consommation moyenne de gaz par ville
-app.get('/gaz/fields/:nom_officiel_epci', (req,res) => {
+app.get('/gaz/nom_officiel_epci/:nom_officiel_epci', (req,res) => {
     const code = req.params.nom_officiel_epci
     let sum =0;
 // n compte le nombre de fois que la ville recherchée est apparue
     let n=0;
     const a = []
     for (var i = 0; i < gazs.length; i++) {
-        if (gazs[i].fields.nom_officiel_epci === code ) {
-            a.push(gazs[i].fields.consommation);
-            sum = sum + gazs[i].fields.consommation;
+        if (gazs[i].nom_officiel_epci === code ) {
+            a.push(gazs[i].consommation);
+            sum = sum + gazs[i].consommation;
             n =n+1;
   }
 
