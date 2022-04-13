@@ -12,22 +12,23 @@ app.get('/gaz', (req,res) => {
     res.status(200).json(gazs)
 })
 
-
+// Root Pour calculer la consommation moyenne de gaz par ville
 app.get('/gaz/fields/:nom_officiel_epci', (req,res) => {
     const code = req.params.nom_officiel_epci
     let sum =0;
+// n compte le nombre de fois que la ville recherchée est apparue
     let n=0;
     const a = []
     for (var i = 0; i < gazs.length; i++) {
         if (gazs[i].fields.nom_officiel_epci === code ) {
             a.push(gazs[i].fields.consommation);
             sum = sum + gazs[i].fields.consommation;
-            n =n+1;    
+            n =n+1;
   }
-                
+
 }
     const moyenne = sum/n;
-    res.status(200).json(" la moyenne de la consommation de gaz de " +code+ " est de " +moyenne)
+    res.status(200).json("la consommation moyenne de gaz de " +code+ " est de " +moyenne)
 })
 
 // Accés a l'API openweathermap
@@ -52,7 +53,7 @@ app.get('/',(req,res)=>{
 // serveur
 
 app.listen(PORT,()=>{
-    console.log('serveur depuis en marche ')
+    console.log('serveur en marche ')
 })
 
     //const date = parseInt(req.params.fields.date)

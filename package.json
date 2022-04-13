@@ -1,10 +1,10 @@
 {
   "name": "weather_api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Lien vers heruko:  https://donneesconnect.herokuapp.com/ ##   Télecharger  des données",
   "main": "index.js",
   "scripts": {
-    "start":"node index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +13,14 @@
     "csv-parser": "^3.0.0",
     "express": "^4.17.3",
     "nodemon": "^2.0.15"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mame-fatou/Projet-Web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mame-fatou/Projet-Web/issues"
+  },
+  "homepage": "https://github.com/mame-fatou/Projet-Web#readme"
 }
