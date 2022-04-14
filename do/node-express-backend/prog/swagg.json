@@ -1,0 +1,82 @@
+"swagger": "2.0",
+    "info": {
+      "version": "1.0.0", //version of the OpenAPI Specification
+      "title": "API ConsomGazEau",
+      "description": "Retourne la consommation mensuelle de gaz, de carburant et le prix de l'eau au m3 par ville",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Gaz",
+        "description": "Consommation Gaz"
+      }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"]
+	
+	
+	{
+  "paths": {
+    "/gaz": {
+      "get": {
+        "tags": ["gaz"],
+        "summary": "Consommation Gaz",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/gaz"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "/gaz": {
+      "required": ["name", "_id", "companies"],
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "books": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "companies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/User"
+    }
+  }
+}

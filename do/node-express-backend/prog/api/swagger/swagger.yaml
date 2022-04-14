@@ -1,0 +1,70 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: API ConsomGazEau
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /prog:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: x-swagger-router-controller
+    get:
+      description: Retourne la consommation mensuelle de gaz, de carburant et le prix de l'eau au m3 par ville
+      # used as the method name of the controller
+      operationId: prog
+      parameters:
+        - name: Gaz
+          in: query
+          description: Consommation Gaz
+          required: true
+          type: string
+        - name: Eau
+          in: query
+          description: Le prix de la consommation Eau
+          required: false
+          type: string
+        - name: Carburant
+          in: query
+          description: Consommation Carburant
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Rep"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  Rep:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
