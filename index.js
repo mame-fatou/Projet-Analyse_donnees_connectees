@@ -1,6 +1,7 @@
 const express = require('express') // importer le module
 const app = express()
 const PORT = process.env.PORT || 3000
+const puppeteer = require('puppeteer');
 const gazs = require('./Data/conso-gaz-metropole.json')
 
 
@@ -61,6 +62,29 @@ app.get('/records/fields/:com_arm_name',(req,res)=>{
     })
 })
 
+// Scrapping du prix du m3 d'eau des plus grandes ville de france
+
+app.get('/PrixEau/',(req,res) => {
+(async () => {
+    
+	const browser = await puppeteer.launch({headless: true});
+	const page = await browser.newPage();
+	await page.goto(`https://eau.selectra.info/prix-eau`);
+	const eau = await page.evaluate(() => {
+		let eau = [];
+		let elements = document.querySelectorAll('#block-agrippa-content > article > div > div:nth-child(1) > div.table--responsive > table > tbody > tr');
+		for (element of elements) {
+			eau.push({
+				ville: element.querySelector('td:nth-child(1)').innerText,
+                prix : element.querySelector('td:nth-child(2)').innerText
+			})
+		}
+		return eau;
+	});
+    res.send(eau);
+	await browser.close();
+})();
+})
 
 // serveur
 
