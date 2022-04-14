@@ -35,27 +35,27 @@ app.get('/gaz/nom_officiel_epci/:nom_officiel_epci', (req,res) => {
 const axios = require('axios').default
 
 app.get('/records/fields/:com_arm_name',(req,res)=>{
-    
+
     const code = req.params.com_arm_name
-    
+
     axios.get(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=prix-des-carburants-j-1&q=&facet=cp&facet=pop&facet=com_arm_name&facet=automate_24_24&facet=fuel&facet=shortage&facet=update&facet=services&facet=brand&facet=epci_code&facet=epci_name&facet=dep_code&facet=dep_name&facet=reg_code&facet=reg_name&rows=800`)
     .then(response => {
-        var a = 0
-        var b = 0
-        var c = 0
-        var d = 0
-        var e = 0
+        var carburant = {}
         for (var i = 0; i < response.data.records.length; i++) {
             if (response.data.records[i].fields.com_arm_name === code ){
-                a = response.data.records[i].fields.price_e10
-                b = response.data.records[i].fields.price_sp98
-                c = response.data.records[i].fields.price_gplc
-                d = response.data.records[i].fields.price_gazole
-                e = response.data.records[i].fields.update
-                
-            } 
+                carburant.Prix_e10 = response.data.records[i].fields.price_e10
+                carburant.Prix_sp98 = response.data.records[i].fields.price_sp98
+                carburant.Prix_gplc  = response.data.records[i].fields.price_gplc
+                carburant.Prix_gazole = response.data.records[i].fields.price_gazole
+                carburant.update  = response.data.records[i].fields.update
+              
+            }
         }
-        res.status(200).json("Les prix des carburants pour la commune de \n"+code+" a la date de "+e+"\n sont les suivant : \n Le prix du E10 est de "+a+"Le prix du SP98 est de "+b+"Le prix du GPLC est de "+c+"Le prix du Gazole est de "+d)
+        res.status(200).json(carburant)
+
+        //res.status(200).json("Les prix des carburants pour la commune de" +code+ "pour la date de "+e+ "sont\n Le prix du E10 qui est de "+a+"\n Le prix du SP98 est de "+b+
+      //  "\n Le prix du GPLC est de "+c+
+        //"\n Le prix du Gazole est de "+d)
     })
     .catch(Error => {
         console.log(Error.message)
