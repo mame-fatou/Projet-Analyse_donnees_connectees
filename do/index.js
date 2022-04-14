@@ -1,7 +1,7 @@
 "use strict";
 
 const express= require('express');
-const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,29 +23,52 @@ app.listen(PORT, function(){
 
 //const puppeteer = require('puppeteer')
 
-async function getVisual() {
+
+const scrap = async () =>{
+	console.log("scrap");
+//async function getVisual() {
     try {
-        const URL = 'https://tarifgaz.com/infos-pratiques/trouver-zone-tarifaire'
-        const browser = await puppeteer.launch({ headless: false })
-        const page = await browser.newPage()
+		console.log("try");
+        const URL = 'https://www.fournisseurs-electricite.com/eau/prix-commune'
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
 
-        await page.goto(URL)
-		await page.pdf({ path: 'page.pdf' })
-        //await page.screenshot({ path: 'screenshot.png' })
-		const myU = document.querySelector('result');
-		console.log(myU);
-		fetch('result')
-		.then(function(response) {
-		return response.blob();
+        await page.goto(URL);
+		//await page.pdf({ path: 'page.pdf' })
+        console.log("goto");
+		await page.waitForSelector('div');
+		console.log("wait");
+		
+		const data = await page.evaluate(()=>{
+			
+			console.log("evaluate");
+			const list = []
+			//const items = document.querySelectorAll("td");
+			const items = document.querySelectorAll("div > td");
+			
+			console.log("items", items);
+			for (const item of items) {
+				/*list.push({
+					ville: item.querySelector(".ville td").innerHTML
+					//console.log(ville)
+					})*/
+					//console.log("item", item);
+			}
+
+		return list
 		})
-
-        await browser.close()
-    } catch (error) {
+		console.log(data)
+		await browser.close()
+		} 
+		catch (error) {
         console.error(error)
     }
-}
 
-getVisual()
+		}
+		
+		
+		scrap()
+	
 
 app.listen(PORT, function(){
     console.log('Hello :'+ PORT);
