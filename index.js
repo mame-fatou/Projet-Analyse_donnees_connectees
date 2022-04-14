@@ -17,17 +17,19 @@ app.get('/gaz/nom_officiel_epci/:nom_officiel_epci', (req,res) => {
     let sum =0;
 // n compte le nombre de fois que la ville recherchée est apparue
     let n=0;
+    let consommation = {}
     const a = []
     for (var i = 0; i < gazs.length; i++) {
         if (gazs[i].nom_officiel_epci === code ) {
-            a.push(gazs[i].consommation);
-            sum = sum + gazs[i].consommation;
-            n =n+1;
-  }
-
+           a.push(gazs[i].consommation);
+           sum = sum + gazs[i].consommation;
+           n =n+1;  }
 }
     const moyenne = sum/n;
-    res.status(200).json("la consommation moyenne de gaz de " +code+ " est de " +moyenne)
+    consommation.nom=code
+    consommation.consommation_moyenne = moyenne
+// resultat (consommation) est sous format json
+   res.status(200).json(consommation)
 })
 
 // Accés a l'API openweathermap
@@ -48,14 +50,11 @@ app.get('/records/fields/:com_arm_name',(req,res)=>{
                 carburant.Prix_gplc  = response.data.records[i].fields.price_gplc
                 carburant.Prix_gazole = response.data.records[i].fields.price_gazole
                 carburant.update  = response.data.records[i].fields.update
-              
+                carburant.cp  = response.data.records[i].fields.cp
             }
         }
         res.status(200).json(carburant)
 
-        //res.status(200).json("Les prix des carburants pour la commune de" +code+ "pour la date de "+e+ "sont\n Le prix du E10 qui est de "+a+"\n Le prix du SP98 est de "+b+
-      //  "\n Le prix du GPLC est de "+c+
-        //"\n Le prix du Gazole est de "+d)
     })
     .catch(Error => {
         console.log(Error.message)
