@@ -13,6 +13,7 @@ Pour cette source, la méthode du scraping a été adoptée. A l’aide de Node.
 
 ##   Téléchargement d'un jeu de données 
 #### Consommation mensuelle brute de gaz des grandes Métropoles françaises (zone GRTgaz + Teréga)
+#### Pour y acceder tapez la route : localhost:3000/gaz/nom_officiel_epci/:nom_officiel_epci
 
 Ce jeu de données présente les estimations mensuelles des consommations de gaz (KWh PCS 0°C) des métropoles françaises.
 Cette  donnée est disponible sur le site data.gouv (https://www.data.gouv.fr/fr/datasets/consommation-mensuelle-brute-de-gaz-des-grandes-metropoles-francaises-zone-grtgaz-terega/)
@@ -21,6 +22,7 @@ Pour le code: Nous avons crée une boucle "for" afin de traverser toutes la base
 
 ##  Récupération des données avec une requête  API
 #### Prix de la consommation de carburant par ville
+#### Pour y acceder tapez la route : localhost:3000//records/fields/:com_arm_name
 Via le lien ci-dessous, sur l'onglet API, nous avons récupérer un certains nombre de lignes concernant les variables dont nous avions besoin tel que commune, population, code postale etc. On les a enregistrer, puis integrer dans le code. Par la suite toujours avec Node.js, nous avons utilisé le package axios pour lire une API.
 https://public.opendatasoft.com/explore/dataset/prix-des-carburants-j-1/table/
 
