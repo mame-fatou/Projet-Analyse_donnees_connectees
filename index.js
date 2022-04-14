@@ -40,13 +40,22 @@ app.get('/records/fields/:com_arm_name',(req,res)=>{
     
     axios.get(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=prix-des-carburants-j-1&q=&facet=cp&facet=pop&facet=com_arm_name&facet=automate_24_24&facet=fuel&facet=shortage&facet=update&facet=services&facet=brand&facet=epci_code&facet=epci_name&facet=dep_code&facet=dep_name&facet=reg_code&facet=reg_name&rows=800`)
     .then(response => {
-        var a = []
+        var a = 0
+        var b = 0
+        var c = 0
+        var d = 0
+        var e = 0
         for (var i = 0; i < response.data.records.length; i++) {
             if (response.data.records[i].fields.com_arm_name === code ){
-                a.push(response.data.records[i].fields.reg_code)
+                a = response.data.records[i].fields.price_e10
+                b = response.data.records[i].fields.price_sp98
+                c = response.data.records[i].fields.price_gplc
+                d = response.data.records[i].fields.price_gazole
+                e = response.data.records[i].fields.update
+                
             } 
         }
-        res.status(200).json(a)
+        res.status(200).json("Les prix des carburants pour la commune de \n"+code+" a la date de "+e+"\n sont les suivant : \n Le prix du E10 est de "+a+"Le prix du SP98 est de "+b+"Le prix du GPLC est de "+c+"Le prix du Gazole est de "+d)
     })
     .catch(Error => {
         console.log(Error.message)
