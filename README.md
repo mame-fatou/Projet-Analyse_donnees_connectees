@@ -19,17 +19,22 @@ Pour le code: Nous avons crée une boucle "for" afin de traverser toutes la base
 
 #  Récupération des données avec une requête  
 ## Prix de la consommation de carburant par ville
-Via le lien ci-dessous, toujours avec Node.js
+Via le lien ci-dessous, sur l'onglet API, nous avons récupérer un certains nombre de lignes concernant les variables dont nous avions besoin tel que commune, population, code postale etc. On les a enregistrer, puis integrer dans le code. Par la suite toujours avec Node.js, nous avons utilisé le package axios pour lire une API.
 https://public.opendatasoft.com/explore/dataset/prix-des-carburants-j-1/table/
+
+
 
 
 ## Trouver un lien pour croiser les données 
 
-      ### Objectif
+### Objectif
 
 Avec ces données, l’objectif est de permettre à un utilisateur de connaitre les informations énoncées ci-dessus en renseignant le nom d'une ville qu’il souhaite. 
 
-# Contrainte
+# Contrainte & Perspective
 
 On veut grâce au nom des villes présentes dans chaque tables réaliser une jointure des trois tables. Cependant les villes n'ont pas les mêmes formats (majuscule/minuscule etc...). Nos tables ne diposent pas forcément du même nombre de villes.
+
+#Résulats & Sortie
+Le nom de la ville est renseigné dans le localhost. Renvoi un fichier json contenant les informations carburants (différents type de carburant et leurs prix), informations de la consommations d'eaux() et de gaz() 
 
