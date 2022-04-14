@@ -38,6 +38,7 @@ app.get('/gaz/nom_officiel_epci/:nom_officiel_epci', (req,res) => {
 const axios = require('axios').default
 
 app.get('/records/fields/:com_arm_name',(req,res)=>{
+<<<<<<< Updated upstream
 
     const code = req.params.com_arm_name
 
@@ -56,6 +57,20 @@ app.get('/records/fields/:com_arm_name',(req,res)=>{
         }
         res.status(200).json(carburant)
 
+=======
+    
+    const code = req.params.com_arm_name
+    
+    axios.get(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=prix-des-carburants-j-1&q=&facet=cp&facet=pop&facet=com_arm_name&facet=automate_24_24&facet=fuel&facet=shortage&facet=update&facet=services&facet=brand&facet=epci_code&facet=epci_name&facet=dep_code&facet=dep_name&facet=reg_code&facet=reg_name&rows=800`)
+    .then(response => {
+        var a = []
+        for (var i = 0; i < response.data.records.length; i++) {
+            if (response.data.records[i].fields.com_arm_name === code ){
+                a.push(response.data.records[i].fields.reg_code)
+            } 
+        }
+        res.status(200).json(a)
+>>>>>>> Stashed changes
     })
     .catch(Error => {
         console.log(Error.message)
