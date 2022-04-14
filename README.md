@@ -22,7 +22,7 @@ Pour le code: Nous avons crée une boucle "for" afin de traverser toutes la base
 
 ##  Récupération des données avec une requête  API
 #### Prix de la consommation de carburant par ville
-#### Pour y acceder tapez la route : localhost:3000//records/fields/:com_arm_name
+#### Pour y acceder tapez la route : localhost:3000/records/fields/:com_arm_name
 Via le lien ci-dessous, sur l'onglet API, nous avons récupérer un certains nombre de lignes concernant les variables dont nous avions besoin tel que commune, population, code postale etc. On les a enregistrer, puis integrer dans le code. Par la suite toujours avec Node.js, nous avons utilisé le package axios pour lire une API.
 https://public.opendatasoft.com/explore/dataset/prix-des-carburants-j-1/table/
 
