@@ -12,20 +12,22 @@ app.get('/gaz', (req,res) => {
     res.status(200).json(gazs)
 })
 
-// Root Pour calculer la consommation moyenne de gaz par ville
+//  Pour calculer la consommation moyenne de gaz par ville
 app.get('/gaz/nom_officiel_epci/:nom_officiel_epci', (req,res) => {
     const code = req.params.nom_officiel_epci
     let sum =0;
-// n compte le nombre de fois que la ville recherchée est apparue
-    let n=0;
+// n compte le nombre de fois que la ville recherchée est présente dans le document
+    let n=0; // On l'initialise à 0
     let consommation = {}
     const a = []
     for (var i = 0; i < gazs.length; i++) {
         if (gazs[i].nom_officiel_epci === code ) {
            a.push(gazs[i].consommation);
-           sum = sum + gazs[i].consommation;
+	// on calcul la somme des consommation trouvée pour la ville 
+           sum = sum + gazs[i].consommation; 
            n =n+1;  }
 }
+	//Calcul de la moyenne 
     const moyenne = sum/n;
     consommation.nom=code
     consommation.consommation_moyenne = moyenne
@@ -38,7 +40,7 @@ app.get('/gaz/nom_officiel_epci/:nom_officiel_epci', (req,res) => {
 const axios = require('axios').default
 
 app.get('/records/fields/:com_arm_name',(req,res)=>{
-<<<<<<< Updated upstream
+// <<<<<<< Updated upstream
 
     const code = req.params.com_arm_name
 
@@ -57,7 +59,7 @@ app.get('/records/fields/:com_arm_name',(req,res)=>{
         }
         res.status(200).json(carburant)
 
-=======
+// =======
     
     const code = req.params.com_arm_name
     
@@ -70,7 +72,7 @@ app.get('/records/fields/:com_arm_name',(req,res)=>{
             } 
         }
         res.status(200).json(a)
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
     })
     .catch(Error => {
         console.log(Error.message)
