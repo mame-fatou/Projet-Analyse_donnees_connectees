@@ -35,10 +35,22 @@ https://public.opendatasoft.com/explore/dataset/prix-des-carburants-j-1/table/
 
 Avec ces données, l’objectif est de permettre à un utilisateur de connaitre les informations énoncées ci-dessus en renseignant le nom d'une ville qu’il souhaite. 
 
+
+
+# Résulats & Sortie
+Le nom de la ville est renseigné dans le localhost. Renvoi un fichier json contenant les informations carburants (différents type de carburant et leurs prix), informations de la consommations d'eaux() et de gaz() 
+
+
+
 # Contrainte & Perspective
 
 On veut grâce au nom des villes présentes dans chaque tables réaliser une jointure des trois tables. Cependant les villes n'ont pas les mêmes formats (majuscule/minuscule etc...). Nos tables ne diposent pas forcément du même nombre de villes.
 
-#Résulats & Sortie
-Le nom de la ville est renseigné dans le localhost. Renvoi un fichier json contenant les informations carburants (différents type de carburant et leurs prix), informations de la consommations d'eaux() et de gaz() 
+Comme perpspective nous pensons à faire une liaison avec nos trois parties. C'est à dire faire une route qui nous permet d'obtenir à la fois la consommation moyenne de gaz,le prix du carburant et le prix d'eaux au m3 pour une ville données. 
+Dans notre gestionnaire de routage on va ajouter des schema de POST , de PUT, UPDATE 
+
+
+
+
+
 
