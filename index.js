@@ -18,19 +18,20 @@ app.get('/gaz/nom_officiel_epci/:nom_officiel_epci', (req,res) => {
     let sum =0;
 // n compte le nombre de fois que la ville recherchée est apparue
     let n=0;
-    let consommation = {}
-    const a = []
+    let a = [];
+    let consommatio = {};
     for (var i = 0; i < gazs.length; i++) {
-        if (gazs[i].nom_officiel_epci === code ) {
-           a.push(gazs[i].consommation);
-           sum = sum + gazs[i].consommation;
-           n =n+1;  }
+        if (gazs[i].fields.nom_officiel_epci === code ) {
+           a.push(gazs[i].fields.consommation);
+           sum = sum + gazs[i].fields.consommation;
+           n =n+1;  
+        }
 }
     const moyenne = sum/n;
-    consommation.nom=code
-    consommation.consommation_moyenne = moyenne
+    consommatio.nom=code
+    consommatio.consommation_moyenne = moyenne
 // resultat (consommation) est sous format json
-   res.status(200).json(consommation)
+   res.status(200).json(consommatio)
 })
 
 // Accés a l'API openweathermap
