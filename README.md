@@ -11,7 +11,7 @@ Lien vers heruko:  https://donneesconnect.herokuapp.com/
 Pour cette source, la méthode du scraping a été adoptée. A l’aide de Node.js nous avons utilisé son package « Puppeteer », pour automatiser l’extraction d’information d’une page web, en l’occurrence le prix de la facture estimée pour 120m3/an. Le lien de la page se trouve ci-dessous.
 (https://www.fournisseurs-electricite.com/eau/prix-commune)
 
-##   Téléchargement d'un jeu de données 
+##   Téléchargement d'un jeu de donnée
 #### Consommation mensuelle brute de gaz des grandes Métropoles françaises (zone GRTgaz + Teréga)
 #### Pour y acceder tapez la route : localhost:3000/gaz/nom_officiel_epci/:nom_officiel_epci
 
